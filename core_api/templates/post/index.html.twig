@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+    <div class="caption">
+        <dl class="row">
+            {% for invite in invites %}
+                <dt class="col-sm-6 label_dt">{{ invite.title }}</dt><dd class="col-sm-6" ><a href="{{ path('postdelete', {id: invite.id}) }}">Delete</a></dd>
+            {% endfor %}
+        </dl>
+    </div>
+{% endblock %}
