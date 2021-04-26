@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PostController!{% endblock %}
+{% block title %}Invitations{% endblock %}
 
 {% block body %}
     {% for message in app.flashes('success') %}
@@ -8,11 +8,16 @@
             {{ message }}
         </div>
     {% endfor %}
-    <div class="caption">
-        <dl class="row">
+    <div class="Table">
+        <li class="row"><center><b>Invitations Received</b></center></li>
+        <li class="row"><ul class="col-sm-4 label_dt"><b>Message Sent</b></ul><ul class="col-sm-4 label_dt"><b>From</b></ul><ul class="col-sm-4 label_dt"><b><ul>Action</ul></b></ul></li>
+        <li class="row">
             {% for invite in invites %}
-                <dt class="col-sm-6 label_dt">{{ invite.title }}</dt><dd class="col-sm-6" ><a href="{{ path('postdelete', {id: invite.id}) }}">Cancel</a></dd>
+                <ul class="col-sm-4 label_dt">{{ invite.title }}</ul><ul class="col-sm-4 label_dt">ss</ul><ul class="col-sm-4" ><a href="{{ path('postdelete', {id: invite.id}) }}">Cancel</a></ul>
             {% endfor %}
-        </dl>
+        </li>
+        <li class="row">
+            <a href="{{ path('postcreate')}}">Send New Invitation</a>
+        </li>
     </div>
 {% endblock %}

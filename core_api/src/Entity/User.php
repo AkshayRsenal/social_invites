@@ -40,6 +40,11 @@ class User implements UserInterface
     }
 
     /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $profilename;
+
+    /**
      * A visual identifier that represents this user.
      *
      * @see UserInterface
@@ -55,6 +60,19 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getProfileName(): string
+    {
+        return (string) $this->profilename;
+    }
+
+    public function setProfileName(string $profilename): self
+    {
+        $this->profilename = $profilename;
+
+        return $this;
+    }
+
 
     /**
      * @see UserInterface
@@ -108,5 +126,9 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function __toString(){
+        return $this->profilename;
     }
 }
