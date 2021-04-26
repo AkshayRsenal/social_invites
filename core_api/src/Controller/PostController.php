@@ -57,6 +57,8 @@ class PostController extends AbstractController
         $em->remove($invite);
         $em->flush();
 
+        $this->addFlash('success', 'Invitation was canceled');
+
         return $this->redirect($this->generateUrl('postindex'));
     }
 
