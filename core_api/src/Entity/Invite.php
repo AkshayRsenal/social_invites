@@ -40,55 +40,16 @@ class Invite
      */
     private $profilename;
 
+
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="profilename")
+     * @ORM\Column(type="string", length=255)
      */
-    private $collectionprofiles;
-
-    public function __construct()
-    {
-        $this->collectionprofiles = new ArrayCollection();
-    }
-
+    private $invite_from;
+    
 
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getCollectionprofiles(): ?User
-    {
-        return $this->collectionprofiles;
-    }
-
-    public function setCollectionprofiles(?User $collectionprofiles): self
-    {
-        $this->collectionprofiles = $collectionprofiles;
-
-        return $this;
-    }
-
-    public function addCollectionprofile(User $collectionprofile): self
-    {
-        if (!$this->collectionprofiles->contains($collectionprofile)) {
-            $this->collectionprofiles[] = $collectionprofile;
-            $collectionprofile->setProfilename($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCollectionprofile(User $collectionprofile): self
-    {
-        if ($this->collectionprofiles->removeElement($collectionprofile)) {
-            // set the owning side to null (unless already changed)
-            if ($collectionprofile->getProfilename() === $this) {
-                $collectionprofile->setProfilename(null);
-            }
-        }
-
         return $this;
     }
 
@@ -104,5 +65,22 @@ class Invite
         return $this;
     }
 
+    public function getInviteFrom(): ?string
+    {
+        return $this->invite_from;
+    }
 
+    public function getInvite_from(): ?string
+    {
+        return $this->invite_from;
+    }
+
+    public function setInviteFrom(string $invite_from): self
+    {
+        $this->invite_from = $invite_from;
+
+        return $this;
+    }
+
+    
 }

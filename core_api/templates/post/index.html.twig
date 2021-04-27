@@ -13,7 +13,7 @@
         <li class="row"><ul class="col-sm-4 label_dt"><b>Message Sent</b></ul><ul class="col-sm-4 label_dt"><b>From</b></ul><ul class="col-sm-4 label_dt"><b><ul>Action</ul></b></ul></li>
         <li class="row">
             {% for invite in invites %}
-                <ul class="col-sm-4 label_dt">{{ invite.title }}</ul><ul class="col-sm-4 label_dt">ss</ul><ul class="col-sm-4" ><a href="{{ path('postdelete', {id: invite.id}) }}">Cancel</a></ul>
+                <ul class="col-sm-4 label_dt">{{ invite.title }}</ul><ul class="col-sm-4 label_dt">{{ invite.invite_from }}</ul><ul class="col-sm-4" ><a href="{{ path('postdelete', {id: invite.id}) }}">Decline</a></ul>
             {% endfor %}
         </li>
         <li class="row">

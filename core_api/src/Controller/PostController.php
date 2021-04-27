@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Invite;
+use App\Entity\User;
 use App\Form\InviteType;
 use App\Repository\InviteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,7 +51,7 @@ class PostController extends AbstractController
      * @return Response
      */
 
-    public function create(Request $request){
+    public function create(Request $request, UserInterface $userdata){
         $invite = new Invite();
 
 
@@ -62,10 +63,12 @@ class PostController extends AbstractController
             $title = $request->get('invite')['title'];
 
             if($title){
+
+                $invite->setInviteFrom($userdata);
                 $em->persist($invite);
                 $em->flush();
             }
-            $this->addFlash('success', 'Post was created');
+            $this->addFlash('success', 'Invite was sent');
 
             return $this->redirectToRoute('postindex', [ ]);
         }
@@ -91,7 +94,7 @@ class PostController extends AbstractController
         $em->remove($invite);
         $em->flush();
 
-        $this->addFlash('success', 'Invitation was canceled');
+        $this->addFlash('success', 'Invitation was declined');
 
         return $this->redirect($this->generateUrl('postindex'));
     }
